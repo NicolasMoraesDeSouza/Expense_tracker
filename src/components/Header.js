@@ -1,10 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-
-export function Header() {
+export const Header = () => {
   return (
-    <div>
-        <h2> Carteira digital </h2>
-    </div>
-  );
+    <h2>
+      Expense Tracker
+    </h2>
+  )
 }

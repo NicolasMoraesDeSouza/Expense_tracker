@@ -1,27 +1,30 @@
+import React, {useContext} from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
+//Money formatter function
+function moneyFormatter(num) {
+  let p = num.toFixed(2).split('.');
+  return (
+    '$ ' +
+    p[0]
+      .split('')
+      .reverse()
+      .reduce(function (acc, num, i, orig) {
+        return num === '-' ? acc : num + (i && !(i % 3) ? ',' : '') + acc;
+      }, '') +
+    '.' +
+    p[1]
+  );
+}
 
-export default function Transaction({ transaction }) {
-   
-    const sign = transaction.amount < 0 ? '-' : '+';
-    return(
+export const Transaction = ({ transaction }) => {
+  const { deleteTransaction } = useContext(GlobalContext);
 
-        <div>
-           <ul id='list' className='list'>
-                
+  const sign = transaction.amount < 0 ? '-' : '+';
 
-                    <li className={transaction.amount < 0 ? 'minus' : 'plus'}>
-
-                    {transaction.text}
-                     <span>{sign}${Math.abs(transaction.amount)}</span>
-                    <button className='delete-btn'>x</button>
-                    
-                    </li>
-                    
-      
-               
-            </ul>
-        </div>
-    )
-    
-};
- 
+  return (
+    <li className={transaction.amount < 0 ? 'minus' : 'plus'}>
+      {transaction.text} <span>{sign}{moneyFormatter(transaction.amount)}</span><button onClick={() => deleteTransaction(transaction.id)} className="delete-btn">x</button>
+    </li>
+  )
+}
