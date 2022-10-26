@@ -1,7 +1,6 @@
 # Expense Tracker (React)
 
-This is a React version of the [vanilla JS Expense Tracker](https://github.com/bradtraversy/vanillawebprojects/tree/master/expense-tracker). It uses functional components with hooks and the context API
-
+Calculadora de gastos em React.JS Vanilla, usando React Context e Hooks
 ## Usage
 ```
 npm install
